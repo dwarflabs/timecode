@@ -920,3 +920,78 @@ class TimecodeTester(unittest.TestCase):
     #         "Type str not supported for arithmetic.",
     #         cm.exception.__str__()
     #     )
+
+    def test_eq(self):
+        tc1 = Timecode('24', '23:59:59:29')
+        tc2 = Timecode('24', '23:59:59:29')
+        tc3 = Timecode('25', '23:59:59:29')
+        tc4 = Timecode('24', '23:59:59:28')
+        res1 = tc1 == tc2
+        res2 = tc1 == tc3
+        res3 = tc1 == tc4
+        self.assertEqual(True, res1)
+        self.assertEqual(False, res2)
+        self.assertEqual(False, res3)
+
+    def test_ne(self):
+        tc1 = Timecode('24', '23:59:59:29')
+        tc2 = Timecode('24', '23:59:59:29')
+        tc3 = Timecode('25', '23:59:59:29')
+        tc4 = Timecode('24', '23:59:59:28')
+        res1 = tc1 != tc2
+        res2 = tc1 != tc3
+        res3 = tc1 != tc4
+        self.assertEqual(False, res1)
+        self.assertEqual(True, res2)
+        self.assertEqual(True, res3)
+
+    def test_le(self):
+        tc1 = Timecode('24', '00:30:05:29')
+        tc2 = Timecode('24', '00:30:05:29')
+        tc3 = Timecode('25', '22:59:59:29')
+        tc4 = Timecode('24', '00:30:04:29')
+        res1 = tc1 <= tc2
+        res2 = tc1 <= tc3
+        res3 = tc1 <= tc4
+        self.assertEqual(True, res1)
+        self.assertEqual(True, res2)
+        self.assertEqual(False, res3)
+
+    def test_lt(self):
+        tc1 = Timecode('24', '00:30:05:29')
+        tc2 = Timecode('24', '00:30:05:29')
+        tc3 = Timecode('25', '22:59:59:29')
+        tc4 = Timecode('24', '00:30:04:29')
+        res1 = tc1 < tc2
+        res2 = tc1 < tc3
+        res3 = tc1 < tc4
+        self.assertEqual(False, res1)
+        self.assertEqual(True, res2)
+        self.assertEqual(False, res3)
+
+    def test_ge(self):
+        tc1 = Timecode('24', '00:30:05:29')
+        tc2 = Timecode('24', '00:30:05:29')
+        tc3 = Timecode('25', '22:59:59:29')
+        tc4 = Timecode('24', '00:30:04:29')
+        res1 = tc1 >= tc2
+        res2 = tc1 >= tc3
+        res3 = tc1 >= tc4
+        self.assertEqual(True, res1)
+        self.assertEqual(False, res2)
+        self.assertEqual(True, res3)
+
+    def test_gt(self):
+        tc1 = Timecode('24', '00:30:05:29')
+        tc2 = Timecode('24', '00:30:05:29')
+        tc3 = Timecode('25', '22:59:59:29')
+        tc4 = Timecode('24', '00:30:04:29')
+        res1 = tc1 > tc2
+        res2 = tc1 > tc3
+        res3 = tc1 > tc4
+        self.assertEqual(False, res1)
+        self.assertEqual(False, res2)
+        self.assertEqual(True, res3)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -306,6 +306,30 @@ class Timecode(object):
         return "%02d:%02d:%02d:%02d" % \
             self.frames_to_tc(self.frames)
 
+    def __eq__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) == other.tc_to_frames(str(other))
+
+    def __ne__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) != other.tc_to_frames(str(other))
+
+    def __le__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) <= other.tc_to_frames(str(other))
+
+    def __lt__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) < other.tc_to_frames(str(other))
+
+    def __ge__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) >= other.tc_to_frames(str(other))
+
+    def __gt__(self, other):
+        if not isinstance(other, type(self)): return NotImplemented
+        return self.tc_to_frames(str(self)) > other.tc_to_frames(str(other))
+
     @property
     def hrs(self):
         hrs, mins, secs, frs = self.frames_to_tc(self.frames)
